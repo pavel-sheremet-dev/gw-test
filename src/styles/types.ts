@@ -34,6 +34,8 @@ export interface Palette {
   themeTitle: ThemeTitle;
   colors: {
     defaultFontColor: string;
+    secondaryFontColor: string;
+    fontColor3: string;
     white: string;
     black: string;
     mainBrandColor: string;
@@ -59,7 +61,7 @@ export type TransitionOptions = {
 };
 
 export type CssVars = {
-  delay: number;
+  duration: number;
   breakPoints: {
     response: BreakPoints.response;
     mobile: BreakPoints.mobile;

@@ -4,12 +4,27 @@ import { StyledContainer } from './Container.styled';
 interface Props {
   children: React.ReactNode;
   style?: React.CSSProperties;
-  className?: string;
+  classNames?: string[];
+  sectionType?: 'basic' | 'withImage';
+  backgroundColor?: string;
 }
 
-const Container = ({ style = {}, className, children }: Props) => {
+const Container = ({
+  style = {},
+  classNames,
+  children,
+  sectionType = 'basic',
+  backgroundColor = 'transparent',
+}: Props) => {
   return (
-    <StyledContainer style={style} className={className}>
+    <StyledContainer
+      style={style}
+      className={
+        classNames ? [...classNames, sectionType].join(' ') : sectionType
+      }
+      sectionType={sectionType}
+      backgroundColor={backgroundColor}
+    >
       {children}
     </StyledContainer>
   );

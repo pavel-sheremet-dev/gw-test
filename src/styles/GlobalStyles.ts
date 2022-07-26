@@ -1,13 +1,23 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
 body {
   color: ${({ theme }) => theme.colors.defaultFontColor};
   background-color: ${({ theme }) => theme.colors.backgroundColor1};
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 16px;
+  animation-name: fadein;
+  animation-duration: 0.5s;
 }
+
+
 
 /* section {
   outline: 1px solid green;
@@ -48,6 +58,7 @@ a {
   text-decoration: none;
   color: inherit;
   display: inline-block;
+  outline: none;
 }
 
 .list {

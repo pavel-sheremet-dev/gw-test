@@ -1,43 +1,97 @@
 import styled from 'styled-components';
 
-export enum HeadingTitlesTags {
-  h1 = 'h1',
-  h2 = 'h2',
-  h3 = 'h3',
-  h4 = 'h4',
-  h5 = 'h5',
-  h6 = 'h6',
+interface IStyledSectionProps {
+  sectionType: 'basic' | 'withImage';
 }
 
-interface ITitleProps {
-  isHidden: boolean;
-  as: HeadingTitlesTags;
-}
-
-export const StyledSection = styled.section`
+export const StyledSection = styled.section<IStyledSectionProps>`
   /* outline: 1px solid yellow; */
-  border-bottom: 1px solid ${({ theme }) => theme.colors.mainBrandColor};
   position: relative;
-  padding-top: 40px;
-  padding-bottom: 40px;
+
+  & .suptitle {
+    margin-bottom: ${({ sectionType }) =>
+      sectionType === 'basic' ? '20px' : '8px'};
+  }
+
+  & .title,
+  & .description {
+    margin-bottom: ${({ sectionType }) =>
+      sectionType === 'basic' ? '20px' : '24px'};
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
+    & .suptitle {
+      margin-bottom: ${({ sectionType }) =>
+        sectionType === 'basic' ? '24px' : '8px'};
+    }
+
+    & .title,
+    & .description {
+      margin-bottom: 24px;
+    }
+  }
 `;
 
-export const Title = styled.h2<ITitleProps>`
-  font-size: 16pt;
-  margin-bottom: 20px;
+export const ImageWrapper = styled.div`
+  width: 100%;
+  flex-shrink: 0;
+  background-color: brown;
 
-  ${({ isHidden }) =>
-    isHidden &&
-    `
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    border: 0;
-    padding: 0;
-    white-space: nowrap;
-    clip-path: inset(100%);
-    clip: rect(0 0 0 0);
-    overflow: hidden;
-  `};
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
+    width: 368px;
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
+    width: 670px;
+  }
+
+  & img {
+    width: 100%;
+  }
+`;
+
+export const ContentWrapper = styled.div<IStyledSectionProps>`
+  /* padding: 40px 20px; */
+  padding: ${({ sectionType }) =>
+    sectionType === 'basic' ? '0' : '40px 20px'};
+  text-align: ${({ sectionType }) =>
+    sectionType === 'basic' ? 'center' : 'start'};
+
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
+    /* padding: 40px 32px; */
+    padding: ${({ sectionType }) =>
+      sectionType === 'basic' ? '0' : '40px 32px'};
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
+    /* padding: 80px 20px; */
+    padding: ${({ sectionType }) =>
+      sectionType === 'basic' ? '0' : '80px 20px'};
+  }
+`;
+
+export const Title = styled.h2`
+  font-size: 38px;
+  line-height: 1.26;
+  font-weight: 300;
+`;
+
+export const SupTitle = styled.p`
+  font-size: 18px;
+  line-height: 1.67;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
+    font-size: 20px;
+    line-height: 1.65;
+  }
+`;
+
+export const Description = styled.p`
+  font-size: 16px;
+  line-height: 1.63;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
+    font-size: 18px;
+    line-height: 1.56;
+  }
 `;
