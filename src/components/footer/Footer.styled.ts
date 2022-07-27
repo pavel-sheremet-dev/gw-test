@@ -17,8 +17,12 @@ export const FooterStyled = styled.footer`
       theme.transition({ property: CSSProp.opacity })};
   }
 
-  & .link:hover {
-    opacity: 0.8;
+  & .social-icon {
+    transition: ${({ theme }) => theme.transition({ property: CSSProp.fill })};
+  }
+
+  & .link:hover .social-icon {
+    fill: ${({ theme }) => theme.colors.mainBrandColor};
   }
 
   & small {

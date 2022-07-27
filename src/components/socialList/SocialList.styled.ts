@@ -6,6 +6,10 @@ export const ListStyled = styled.ul`
   justify-content: space-between;
   width: 216px;
 
+  .social-icon {
+    fill: ${({ theme }) => theme.colors.secondaryFontColor};
+  }
+
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     width: 180px;
   }

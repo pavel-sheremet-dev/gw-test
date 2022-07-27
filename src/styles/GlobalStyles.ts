@@ -52,6 +52,7 @@ svg
 
 button {
   border: none;
+  outline: none;
 }
 
 a {

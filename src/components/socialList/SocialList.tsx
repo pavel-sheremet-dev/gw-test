@@ -1,37 +1,46 @@
 import { ListStyled } from './SocialList.styled';
 
-export interface SocialItemData {
-  id: string;
-  iconUrl: string;
-  link: string;
-  alt: string;
+import { ReactComponent as LinkedinIcon } from 'assets/images/svg/linkedin.svg';
+import { ReactComponent as YoutubeIcon } from 'assets/images/svg/youtube.svg';
+import { ReactComponent as TwitterIcon } from 'assets/images/svg/twiter.svg';
+import { ReactComponent as FacebookIcon } from 'assets/images/svg/facebook.svg';
+
+export interface ISocialLinks {
+  facebook: string;
+  twitter: string;
+  youtube: string;
+  linkedin: string;
 }
 
 interface IProps {
-  listData: SocialItemData[];
+  socialsLinks: ISocialLinks;
   className?: string;
 }
 
-const SocialList = ({ listData, className }: IProps) => {
+const SocialList = ({ socialsLinks, className }: IProps) => {
   return (
-    <>
-      {!!listData.length && (
-        <ListStyled className={className}>
-          {listData.map(({ id, iconUrl, link, alt }) => (
-            <li key={id}>
-              <a
-                href={link}
-                target={'_blank'}
-                rel="noreferrer noopener nofollow"
-                className="link"
-              >
-                <img src={iconUrl} className="icon" alt="icon" />
-              </a>
-            </li>
-          ))}
-        </ListStyled>
-      )}
-    </>
+    <ListStyled className={className}>
+      <li>
+        <a href={socialsLinks.facebook} className="link">
+          <FacebookIcon className="social-icon" />
+        </a>
+      </li>
+      <li>
+        <a href={socialsLinks.twitter} className="link">
+          <TwitterIcon className="social-icon" />
+        </a>
+      </li>
+      <li>
+        <a href={socialsLinks.youtube} className="link">
+          <YoutubeIcon className="social-icon" />
+        </a>
+      </li>
+      <li>
+        <a href={socialsLinks.linkedin} className="link">
+          <LinkedinIcon className="social-icon" />
+        </a>
+      </li>
+    </ListStyled>
   );
 };
 

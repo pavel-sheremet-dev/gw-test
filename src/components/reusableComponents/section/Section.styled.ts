@@ -52,6 +52,7 @@ export const ImageWrapper = styled.div`
 
 export const ContentWrapper = styled.div<IStyledSectionProps>`
   /* padding: 40px 20px; */
+  width: 100%;
   padding: ${({ sectionType }) =>
     sectionType === 'basic' ? '0' : '40px 20px'};
   text-align: ${({ sectionType }) =>

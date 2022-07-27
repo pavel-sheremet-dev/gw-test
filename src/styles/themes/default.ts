@@ -13,7 +13,7 @@ export const defaultTheme: Palette = {
     secondaryBrandColor: '#0284D0',
     backgroundColor1: '#ffffff',
     backgroundColor2: '#F4F4F4',
-    required: 'red',
+    required: '#EB5757',
     requiredBg: 'red',
     inputPlaceholder: '#808080',
     inputBackGround: '',

@@ -1,4 +1,5 @@
-import { CSSProperties } from 'react';
+import { PageFormatContext } from 'context/PageFormatContext';
+import { CSSProperties, useContext } from 'react';
 import { ButtonStyled } from './Buttons.styled';
 
 export type ColorType = 'main' | 'secondary';
@@ -9,9 +10,10 @@ interface IProps {
   text: string;
   transparent?: boolean;
   color?: ColorType;
-  onClick(): void;
+  onClick?(): void;
   className?: string;
   style?: CSSProperties;
+  disabled?: boolean;
 }
 
 const Button = ({
@@ -23,7 +25,12 @@ const Button = ({
   onClick,
   className,
   style,
+  disabled,
 }: IProps) => {
+  const pageFormat = useContext(PageFormatContext);
+
+  const isMobile = pageFormat === 'mobile' || pageFormat === 'response';
+
   return (
     <ButtonStyled
       type={type}
@@ -33,8 +40,9 @@ const Button = ({
       className={className}
       style={style}
       hasIcon={Boolean(icon)}
+      disabled={disabled}
     >
-      {icon && icon}
+      {icon && !isMobile && icon}
       {text}
     </ButtonStyled>
   );

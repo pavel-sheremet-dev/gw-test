@@ -18,6 +18,7 @@ export enum CSSProp {
   outlineColor = 'outline-color',
   borderColor = 'border-color',
   opacity = 'opacity',
+  top = 'top',
 }
 
 export type TransitionProp =
@@ -28,7 +29,8 @@ export type TransitionProp =
   | 'transform'
   | 'outline-color'
   | 'border-color'
-  | 'opacity';
+  | 'opacity'
+  | 'top';
 
 export interface Palette {
   themeTitle: ThemeTitle;

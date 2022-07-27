@@ -13,6 +13,10 @@ export const HeaderStyled = styled.header`
 
   .header-container {
     text-align: center;
+    padding-top: 0;
+    padding-bottom: 0;
+    width: 100vw;
+    max-width: ${({ theme }) => theme.breakPoints.desktop};
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {

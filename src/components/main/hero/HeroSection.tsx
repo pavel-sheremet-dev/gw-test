@@ -13,7 +13,7 @@ const HeroSection = () => {
           className="hero-button"
           icon={<BtnIcon />}
           color={'main'}
-          text="Кнопка"
+          text="Read More"
           type={'button'}
           onClick={() => {}}
         />

@@ -10,12 +10,12 @@ interface IProps {
 const TeamList = ({ listData }: IProps) => {
   return (
     <ListStyled>
-      {listData.map(({ imageConfig, id, name, position, socials }) => (
+      {listData.map(({ imageConfig, id, name, position, socialsLinks }) => (
         <li className="item" key={id}>
           <div className="image-wrapper">
             <ImagesSet config={imageConfig} />
             <div className="image-mask"></div>
-            <SocialList listData={socials} className="socials" />
+            <SocialList socialsLinks={socialsLinks} className="socials" />
           </div>
           <p className="name">{name}</p>
           <p className="position">{position}</p>
