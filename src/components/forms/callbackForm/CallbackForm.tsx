@@ -52,6 +52,8 @@ const CallbackForm = () => {
         };
         // console.log(data);
 
+        console.log(encode({ ...netlifyConfig, ...data }));
+
         fetch('/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -77,6 +79,7 @@ const CallbackForm = () => {
     >
       {({ isValid }: FormikProps<ICallbackState>) => (
         <FormStyled name={formName} data-netlify={true}>
+          <input type={'hidden'} name={'form-name'} value={formName} />
           <InputField
             label={'Enter your name'}
             name={'name'}
