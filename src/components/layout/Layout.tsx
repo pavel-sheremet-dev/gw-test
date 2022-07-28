@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 
 import { Format, PageFormatContext } from 'context/PageFormatContext';
 import { BreakPoints } from 'styles/types';
@@ -70,7 +71,7 @@ const Layout = ({ children }: Iprops) => {
   return (
     <PageFormatContext.Provider value={pageFormat}>
       <FontLoadContext.Provider value={fontLoaded}>
-        {children}
+        <HelmetProvider>{children}</HelmetProvider>
       </FontLoadContext.Provider>
     </PageFormatContext.Provider>
   );

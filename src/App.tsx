@@ -14,6 +14,7 @@ import BlogPostOne from 'components/main/blogPosts/BlogPostOne';
 import OurTeamSection from 'components/main/ourTeam/OurTeamSection';
 import RequestSection from 'components/main/request/RequestSection';
 import Footer from 'components/footer/Footer';
+import Meta from 'components/helmet/Meta';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
       <Layout>
         <ThemeProvider theme={getTheme(ThemeTitle.defaultTheme)}>
           <GlobalStyle />
+          <Meta />
           <Header />
           <Main>
             <HeroSection />
