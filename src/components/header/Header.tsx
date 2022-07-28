@@ -25,14 +25,12 @@ const Header = () => {
       if (isFixedPositioin.current) {
         if (window.scrollY < changePositionTrigger) {
           setPosition('absolute');
-          console.log('to rel');
           isFixedPositioin.current = false;
           return;
         }
       } else {
         if (window.scrollY > changePositionTrigger) {
           setPosition('fixed');
-          console.log('to fix');
           isFixedPositioin.current = true;
           return;
         }

@@ -50,9 +50,6 @@ const CallbackForm = () => {
           name,
           email: email.trim().toLowerCase(),
         };
-        // console.log(data);
-
-        console.log(encode({ ...netlifyConfig, ...data }));
 
         fetch('/', {
           method: 'POST',
@@ -78,7 +75,11 @@ const CallbackForm = () => {
       enableReinitialize
     >
       {({ isValid }: FormikProps<ICallbackState>) => (
-        <FormStyled name={formName} data-netlify={true}>
+        <FormStyled
+          name={formName}
+          data-netlify={true}
+          data-netlify-honeypot="bot-field"
+        >
           <input type={'hidden'} name={'form-name'} value={formName} />
           <InputField
             label={'Enter your name'}
