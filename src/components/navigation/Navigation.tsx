@@ -1,6 +1,5 @@
 import { INavigationItem } from 'data/navigation';
-import { useState } from 'react';
-import { Link } from 'react-scroll';
+import { scroller } from 'react-scroll';
 
 import { NavStyled } from './Navigation.styled';
 
@@ -11,25 +10,26 @@ interface IProps {
 }
 
 const Navigation = ({ items, className, offset }: IProps) => {
-  const [isFocused, setIsFocused] = useState(false);
+  const handleScroll = (id: string): void => {
+    scroller.scrollTo(id, {
+      duration: 1000,
+      offset: -offset,
+      smooth: 'easeOutQuint',
+    });
+  };
+
   return (
     <NavStyled className={className}>
       {!!items.length && (
         <ul>
           {items.map(item => (
             <li key={item.id}>
-              <Link
-                className={isFocused ? 'focused' : undefined}
-                onFocus={(): void => setIsFocused(true)}
-                activeClass="active-link"
-                to={item.id}
-                spy={true}
-                smooth={true}
-                // offset={-offset}
-                duration={500}
+              <a
+                href={`#${item.id}`}
+                onClick={handleScroll.bind(this, item.id)}
               >
                 {item.name}
-              </Link>
+              </a>
             </li>
           ))}
         </ul>

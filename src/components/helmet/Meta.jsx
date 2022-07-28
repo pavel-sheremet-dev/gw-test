@@ -20,7 +20,10 @@ const Meta = () => {
       <meta name="twitter:title" content={'Finance ledger'} />
       <meta name="twitter:creator" content={'Psdev'} />
       <meta name="twitter:card" content="summary" />
-      <meta property="og:image" content={image} />
+      <meta
+        property="og:image"
+        content={`https://finanse-ledger-site.netlify.app${image}`}
+      />
       <meta property="og:type" content={'website'} />
       <meta property="og:description" content={'Your Finance Ledger'} />
       <meta property="og:title" content={'Finance ledger'} />

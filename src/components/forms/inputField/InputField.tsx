@@ -1,6 +1,8 @@
-import { FieldHookConfig, useField } from 'formik';
 import { ClassAttributes, InputHTMLAttributes } from 'react';
+import { FieldHookConfig, useField } from 'formik';
+
 import { LabelStyled, InputStyled, Error } from './InputField.styled';
+
 import { ReactComponent as WarningIcon } from 'assets/images/svg/worning.svg';
 
 interface OtherProps {

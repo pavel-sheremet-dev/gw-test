@@ -39,3 +39,14 @@ export const getValueFromStorage = <T = StorageFormsKeys, U = {}>(
     throw new Error('Key must be a string');
   }
 };
+
+export const encode = <T>(data: T): string => {
+  const keys = Object.keys(data);
+  const values = Object.values(data);
+  return keys
+    .map(
+      (key, idx) =>
+        encodeURIComponent(key) + '=' + encodeURIComponent(values[idx]),
+    )
+    .join('&');
+};

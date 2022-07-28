@@ -48,7 +48,7 @@ export const InputStyled = styled.input<IInputProps>`
   font-weight: 400;
   font-size: 16px;
   line-height: 22px;
-  color: inherit;
+  color: ${({ theme }) => theme.colors.defaultFontColor};
   background-color: ${({ theme }) => theme.colors.backgroundColor1};
   ${({ isError, theme }) =>
     isError ? ` outline: 1px solid ${theme.colors.required};` : ''};

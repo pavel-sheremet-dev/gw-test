@@ -1,23 +1,25 @@
 import styled from 'styled-components';
+import { PositionType } from './Header';
 
 interface IStyledHeaderProps {
-  position: 'absolute' | 'fixed';
+  position: PositionType;
   offset: number;
 }
 
 export const HeaderStyled = styled.header<IStyledHeaderProps>`
   position: ${({ position }) => position};
   top: 0;
+  z-index: 100;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 20px 0;
+
   background-color: ${({ position }) =>
     position === 'fixed' ? 'rgba(0, 0, 0, 0.8)' : 'transparent'};
   animation-name: ${({ position }) =>
     position === 'fixed' ? 'header-fadein' : 'header-fadeout'};
   animation-duration: ${({ theme, position }) =>
     `${theme.duration * (position === 'fixed' ? 4 : 2)}ms`};
-  z-index: 100;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 20px 0;
 
   .logo {
     margin-bottom: 12px;

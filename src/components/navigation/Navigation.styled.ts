@@ -21,13 +21,7 @@ export const NavStyled = styled.nav`
     cursor: pointer;
 
     &:focus::after,
-    &:hover::after,
-    &:active::after {
-      opacity: 1;
-    }
-
-    &.active-link::after,
-    &.focused {
+    &:hover::after {
       opacity: 1;
     }
   }

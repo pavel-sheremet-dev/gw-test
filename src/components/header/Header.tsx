@@ -1,14 +1,19 @@
+import { useContext, useEffect, useRef, useState } from 'react';
+import { PageFormatContext } from 'context/PageFormatContext';
+
+import Container from 'components/reusableComponents/container/Container';
 import Logo from 'components/logo/Logo';
 import Navigation from 'components/navigation/Navigation';
-import Container from 'components/reusableComponents/container/Container';
-import { PageFormatContext } from 'context/PageFormatContext';
-import { useContext, useEffect, useRef, useState } from 'react';
+
 import { HeaderStyled } from './Header.styled';
 
 import { navItems } from 'data/navigation';
 
+export type PositionType = 'absolute' | 'fixed'
+
 const Header = () => {
-  const [position, setPosition] = useState<'absolute' | 'fixed'>('absolute');
+  const [position, setPosition] = useState<PositionType>('absolute');
+  const [offset, setOffset] = useState(0);
 
   const pageFormat = useContext(PageFormatContext);
 
@@ -18,7 +23,9 @@ const Header = () => {
   const isFixedPositioin = useRef<null | boolean>(null);
   const headerRef = useRef<HTMLHeadingElement>(null);
 
-  const offset = Number(headerRef.current?.offsetHeight);
+  useEffect(() => {
+    setOffset(Number(headerRef.current?.offsetHeight ?? 0));
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {

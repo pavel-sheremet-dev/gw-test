@@ -4,10 +4,6 @@ import { ThemeContext } from 'styled-components';
 import Button from 'components/reusableComponents/buttons/Button';
 import Section from 'components/reusableComponents/section/Section';
 
-import ImagesSet, {
-  IImageSetConfig,
-} from 'components/reusableComponents/image/Image';
-
 import desk_1x_webp from 'assets/images/blog/blog-desktop.webp';
 import desk_2x_webp from 'assets/images/blog/blog-desktop@2x.webp';
 import desk_1x from 'assets/images/blog/blog-desktop.jpg';
@@ -20,6 +16,10 @@ import mobile_1x_webp from 'assets/images/blog/blog-mobile.webp';
 import mobile_2x_webp from 'assets/images/blog/blog-mobile@2x.webp';
 import mobile_1x from 'assets/images/blog/blog-mobile.jpg';
 import mobile_2x from 'assets/images/blog/blog-mobile@2x.jpg';
+
+import ImagesSet, {
+  IImageSetConfig,
+} from 'components/reusableComponents/image/Image';
 import { NavId } from 'data/navigation';
 
 const config: IImageSetConfig = {
@@ -40,11 +40,15 @@ const config: IImageSetConfig = {
   },
 };
 
-const BlogPostOne = () => {
+interface IProps {
+  scrollId: NavId;
+}
+
+const BlogPostOne = ({ scrollId }: IProps) => {
   const theme = useContext(ThemeContext);
   return (
     <Section
-      id={NavId.BLOG}
+      sectionClass={scrollId}
       as="article"
       backgroundColor={theme.colors.secondaryBrandColor}
       sectionType={'withImage'}

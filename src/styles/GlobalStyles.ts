@@ -8,12 +8,6 @@ export const GlobalStyle = createGlobalStyle`
   to   { opacity: 1; }
 }
 
-@keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-
 
 body {
   color: ${({ theme }) => theme.colors.defaultFontColor};
@@ -26,10 +20,6 @@ body {
 }
 
 
-
-/* section {
-  outline: 1px solid green;
-} */
 
 h1,
 h2,

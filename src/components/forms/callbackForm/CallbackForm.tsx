@@ -3,31 +3,22 @@ import { Formik, FormikHelpers, FormikProps } from 'formik';
 
 import InputField from 'components/forms/inputField/InputField';
 import FormState from 'components/forms/formState/FormState';
+import Button from 'components/reusableComponents/buttons/Button';
+
+import { FormStyled } from './CallbackForm.styled';
+
+import { encode, getValueFromStorage } from '../helpers';
 import {
   formFieldsConfig,
   ICallbackState,
   StorageFormsKeys,
 } from 'components/forms/config';
-import { FormStyled } from './CallbackForm.styled';
-import { getValueFromStorage } from '../helpers';
-import Button from 'components/reusableComponents/buttons/Button';
 
 const fieldsOptions = formFieldsConfig.callback;
 const initialStorageState = formFieldsConfig.callback.initialStorageState;
 
 const formName = 'callback-form';
 const netlifyConfig = { 'form-name': formName };
-
-const encode = (data: ICallbackState): string => {
-  const keys = Object.keys(data);
-  const values = Object.values(data);
-  return keys
-    .map(
-      (key, idx) =>
-        encodeURIComponent(key) + '=' + encodeURIComponent(values[idx]),
-    )
-    .join('&');
-};
 
 const CallbackForm = () => {
   const [initialValues, setInitialValues] = useState(() =>
@@ -54,7 +45,7 @@ const CallbackForm = () => {
         fetch('/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: encode({ ...netlifyConfig, ...data }),
+          body: encode<ICallbackState>({ ...data, ...netlifyConfig }),
         })
           .then(() => {
             alert('Success');
@@ -66,11 +57,6 @@ const CallbackForm = () => {
             alert('Error');
           })
           .finally(() => actions.setSubmitting(false));
-
-        // actions.setSubmitting(false);
-        // sessionStorage.removeItem(StorageFormsKeys.CALLBACK);
-        // setInitialValues(initialStorageState);
-        // actions.resetForm();
       }}
       enableReinitialize
     >
@@ -86,14 +72,14 @@ const CallbackForm = () => {
             name={'name'}
             type="text"
             autoComplete="off"
-            // placeholder="your@email.com"
+            placeholder=""
           />
           <InputField
             label={'Enter Email'}
             name={'email'}
             type="text"
             required
-            // placeholder="your@email.com"
+            placeholder=""
           />
 
           <Button type={'submit'} text={'Send'} disabled={false}></Button>

@@ -1,11 +1,10 @@
-import Section from 'components/reusableComponents/section/Section';
 import { useContext } from 'react';
 import { ThemeContext } from 'styled-components';
 
+import Section from 'components/reusableComponents/section/Section';
+import CallbackForm from 'components/forms/callbackForm/CallbackForm';
+
 import { Title } from 'components/reusableComponents/section/Section.styled';
-import ImagesSet, {
-  IImageSetConfig,
-} from 'components/reusableComponents/image/Image';
 
 import desk_1x_webp from 'assets/images/contact/contact-desktop.webp';
 import desk_2x_webp from 'assets/images/contact/contact-desktop@2x.webp';
@@ -19,7 +18,10 @@ import mobile_1x_webp from 'assets/images/contact/contact-mobile.webp';
 import mobile_2x_webp from 'assets/images/contact/contact-mobile@2x.webp';
 import mobile_1x from 'assets/images/contact/contact-mobile.jpg';
 import mobile_2x from 'assets/images/contact/contact-mobile@2x.jpg';
-import CallbackForm from 'components/forms/callbackForm/CallbackForm';
+
+import ImagesSet, {
+  IImageSetConfig,
+} from 'components/reusableComponents/image/Image';
 import { NavId } from 'data/navigation';
 
 const config: IImageSetConfig = {
@@ -40,11 +42,15 @@ const config: IImageSetConfig = {
   },
 };
 
-const RequestSection = () => {
+interface IProps {
+  scrollId: NavId;
+}
+
+const RequestSection = ({ scrollId }: IProps) => {
   const theme = useContext(ThemeContext);
   return (
     <Section
-      id={NavId.CONTACT}
+      sectionClass={scrollId}
       backgroundColor={theme.colors.backgroundColor2}
       sectionType={'withImage'}
       Image={<ImagesSet config={config} />}

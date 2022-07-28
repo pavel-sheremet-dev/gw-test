@@ -3,9 +3,6 @@ import { ThemeContext } from 'styled-components';
 
 import Section from 'components/reusableComponents/section/Section';
 import Button from 'components/reusableComponents/buttons/Button';
-import ImagesSet, {
-  IImageSetConfig,
-} from 'components/reusableComponents/image/Image';
 
 import desk_1x_webp from 'assets/images/people/people-desktop.webp';
 import desk_2x_webp from 'assets/images/people/people-desktop@2x.webp';
@@ -19,6 +16,10 @@ import mobile_1x_webp from 'assets/images/people/people-mobile.webp';
 import mobile_2x_webp from 'assets/images/people/people-mobile@2x.webp';
 import mobile_1x from 'assets/images/people/people-mobile.jpg';
 import mobile_2x from 'assets/images/people/people-mobile@2x.jpg';
+
+import ImagesSet, {
+  IImageSetConfig,
+} from 'components/reusableComponents/image/Image';
 import { NavId } from 'data/navigation';
 
 const config: IImageSetConfig = {
@@ -39,11 +40,15 @@ const config: IImageSetConfig = {
   },
 };
 
-const About = () => {
+interface IProps {
+  scrollId?: NavId;
+}
+
+const About = ({ scrollId }: IProps) => {
   const theme = useContext(ThemeContext);
   return (
     <Section
-      id={NavId.ABOUT}
+      sectionClass={scrollId}
       backgroundColor={theme.colors.mainBrandColor}
       sectionType={'withImage'}
       Image={<ImagesSet config={config} />}

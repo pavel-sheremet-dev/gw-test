@@ -60,6 +60,7 @@ export const StyledSection = styled.section<IStyledProps>`
   margin: 0 auto;
   min-width: 320px;
   min-height: 533px;
+  background-color: ${({ theme }) => theme.colors.black};
   background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
     ${({ supportWebp }) =>
       supportWebp ? `url(${heroMobile_webp})` : `url(${heroMobile})`};

@@ -64,8 +64,8 @@ const Layout = ({ children }: Iprops) => {
         return;
       }
     };
-    window.addEventListener('resize', onHandleResize);
     onHandleResize();
+    window.addEventListener('resize', onHandleResize);
   }, [pageFormat]);
 
   return (

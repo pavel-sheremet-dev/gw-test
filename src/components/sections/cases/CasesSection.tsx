@@ -1,3 +1,9 @@
+import { useState } from 'react';
+import Lightbox from 'react-image-lightbox';
+
+import Section from 'components/reusableComponents/section/Section';
+import CasesGalleryList from './casesGalleryList/CasesGalleryList';
+
 import cases1_url_1x_webp from 'assets/images/cases/cases1.webp';
 import cases1_url_2x_webp from 'assets/images/cases/cases1@2x.webp';
 import cases1_url_1x from 'assets/images/cases/cases1.jpg';
@@ -28,10 +34,6 @@ import cases7_url_2x_webp from 'assets/images/cases/cases7@2x.webp';
 import cases7_url_1x from 'assets/images/cases/cases7.jpg';
 import cases7_url_2x from 'assets/images/cases/cases7@2x.jpg';
 
-import { useState } from 'react';
-import Lightbox from 'react-image-lightbox';
-import Section from 'components/reusableComponents/section/Section';
-import CasesGalleryList from './casesGalleryList/CasesGalleryList';
 import {
   IImageSetConfig,
   isIUrlsInterface,
@@ -103,7 +105,11 @@ const images: string[] = imagesConfig.map(imageConfige => {
   }
 });
 
-const CasesSection = () => {
+interface IProps {
+  scrollId: NavId;
+}
+
+const CasesSection = ({ scrollId }: IProps) => {
   const [imageIndex, setImageIndex] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -118,7 +124,7 @@ const CasesSection = () => {
   return (
     <>
       <Section
-        id={NavId.CASES}
+        sectionClass={scrollId}
         sectionType={'basic'}
         supTitle="This is what we do"
         title="Business Cases"
