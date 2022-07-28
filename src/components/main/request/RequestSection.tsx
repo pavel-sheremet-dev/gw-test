@@ -20,6 +20,7 @@ import mobile_2x_webp from 'assets/images/contact/contact-mobile@2x.webp';
 import mobile_1x from 'assets/images/contact/contact-mobile.jpg';
 import mobile_2x from 'assets/images/contact/contact-mobile@2x.jpg';
 import CallbackForm from 'components/forms/callbackForm/CallbackForm';
+import { NavId } from 'data/navigation';
 
 const config: IImageSetConfig = {
   alt: 'people in office',
@@ -43,6 +44,7 @@ const RequestSection = () => {
   const theme = useContext(ThemeContext);
   return (
     <Section
+      id={NavId.CONTACT}
       backgroundColor={theme.colors.backgroundColor2}
       sectionType={'withImage'}
       Image={<ImagesSet config={config} />}

@@ -28,7 +28,7 @@ interface IUrls {
   url_2x: string;
 }
 
-const isIUrlsInterface = (urls: IUrls | IFullUrls): urls is IUrls =>
+export const isIUrlsInterface = (urls: IUrls | IFullUrls): urls is IUrls =>
   'url_1x' in urls ? true : false;
 
 interface IProps {

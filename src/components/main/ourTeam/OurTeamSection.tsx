@@ -84,6 +84,7 @@ const listData: IListData[] = [
 const OurTeamSection = () => {
   return (
     <Section
+      id={'link-team'}
       sectionType={'basic'}
       supTitle="Who we are"
       title="Our Professional Team"

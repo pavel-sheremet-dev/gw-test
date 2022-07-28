@@ -20,6 +20,7 @@ import mobile_1x_webp from 'assets/images/blog/blog-mobile.webp';
 import mobile_2x_webp from 'assets/images/blog/blog-mobile@2x.webp';
 import mobile_1x from 'assets/images/blog/blog-mobile.jpg';
 import mobile_2x from 'assets/images/blog/blog-mobile@2x.jpg';
+import { NavId } from 'data/navigation';
 
 const config: IImageSetConfig = {
   alt: 'table, notes, cup of coofee',
@@ -39,12 +40,11 @@ const config: IImageSetConfig = {
   },
 };
 
-console.log(config);
-
 const BlogPostOne = () => {
   const theme = useContext(ThemeContext);
   return (
     <Section
+      id={NavId.BLOG}
       as="article"
       backgroundColor={theme.colors.secondaryBrandColor}
       sectionType={'withImage'}

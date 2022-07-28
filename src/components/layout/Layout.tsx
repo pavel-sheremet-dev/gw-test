@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 
 import { Format, PageFormatContext } from 'context/PageFormatContext';
 import { BreakPoints } from 'styles/types';
+import { FontLoadContext } from 'context/FontLoadContext';
+
+const FontFaceObserver = require('fontfaceobserver');
 
 const breakPoints = {
   responce: Number.parseInt(BreakPoints.response),
@@ -16,6 +19,20 @@ interface Iprops {
 
 const Layout = ({ children }: Iprops) => {
   const [pageFormat, setPageFormat] = useState<Format>('response');
+  const [fontLoaded, setFontLoaded] = useState(false);
+
+  useEffect(() => {
+    const font = new FontFaceObserver('Open Sans');
+
+    font.load().then(
+      function () {
+        setFontLoaded(true);
+      },
+      function () {
+        setFontLoaded(true);
+      },
+    );
+  }, []);
 
   useEffect(() => {
     const onHandleResize = () => {
@@ -52,7 +69,9 @@ const Layout = ({ children }: Iprops) => {
 
   return (
     <PageFormatContext.Provider value={pageFormat}>
-      {children}
+      <FontLoadContext.Provider value={fontLoaded}>
+        {children}
+      </FontLoadContext.Provider>
     </PageFormatContext.Provider>
   );
 };

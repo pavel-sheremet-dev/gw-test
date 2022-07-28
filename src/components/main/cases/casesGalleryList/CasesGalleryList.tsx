@@ -5,13 +5,19 @@ import { ListStyled } from './CasesGalleryList.styled';
 
 interface IProps {
   imagesConfigArray: IImageSetConfig[];
+  getImageIndex(idx: number): void;
 }
 
-const CasesGalleryList = ({ imagesConfigArray }: IProps) => {
+const CasesGalleryList = ({ imagesConfigArray, getImageIndex }: IProps) => {
   return (
     <ListStyled>
       {imagesConfigArray.map((imageConfig, idx) => (
-        <li key={idx}>
+        <li
+          key={idx}
+          onClick={() => {
+            getImageIndex(idx);
+          }}
+        >
           <ImagesSet config={imageConfig} />
         </li>
       ))}

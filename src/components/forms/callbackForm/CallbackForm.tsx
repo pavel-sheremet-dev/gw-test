@@ -15,6 +15,20 @@ import Button from 'components/reusableComponents/buttons/Button';
 const fieldsOptions = formFieldsConfig.callback;
 const initialStorageState = formFieldsConfig.callback.initialStorageState;
 
+const formName = 'callback-form';
+const netlifyConfig = { 'form-name': formName };
+
+const encode = (data: ICallbackState): string => {
+  const keys = Object.keys(data);
+  const values = Object.values(data);
+  return keys
+    .map(
+      (key, idx) =>
+        encodeURIComponent(key) + '=' + encodeURIComponent(values[idx]),
+    )
+    .join('&');
+};
+
 const CallbackForm = () => {
   const [initialValues, setInitialValues] = useState(() =>
     getValueFromStorage<StorageFormsKeys, Partial<ICallbackState>>(
@@ -25,24 +39,44 @@ const CallbackForm = () => {
 
   return (
     <Formik
-      initialValues={{ ...fieldsOptions.initialValues, ...initialValues }}
+      initialValues={{
+        ...fieldsOptions.initialValues,
+        ...initialValues,
+      }}
       validationSchema={fieldsOptions.validationSchema}
-      onSubmit={(values, obj: FormikHelpers<ICallbackState>) => {
+      onSubmit={(values, actions: FormikHelpers<ICallbackState>) => {
         const { email, name } = values;
         const data = {
           name,
           email: email.trim().toLowerCase(),
         };
-        console.log(data);
-        obj.setSubmitting(false);
-        sessionStorage.removeItem(StorageFormsKeys.CALLBACK);
-        setInitialValues(initialStorageState);
-        obj.resetForm();
+        // console.log(data);
+
+        fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: encode({ ...netlifyConfig, ...data }),
+        })
+          .then(() => {
+            alert('Success');
+            sessionStorage.removeItem(StorageFormsKeys.CALLBACK);
+            setInitialValues(initialStorageState);
+            actions.resetForm();
+          })
+          .catch(() => {
+            alert('Error');
+          })
+          .finally(() => actions.setSubmitting(false));
+
+        // actions.setSubmitting(false);
+        // sessionStorage.removeItem(StorageFormsKeys.CALLBACK);
+        // setInitialValues(initialStorageState);
+        // actions.resetForm();
       }}
       enableReinitialize
     >
       {({ isValid }: FormikProps<ICallbackState>) => (
-        <FormStyled>
+        <FormStyled name={formName} data-netlify={true}>
           <InputField
             label={'Enter your name'}
             name={'name'}

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { CSSProp } from 'styles/types';
 
 interface IStyledContainer {
   sectionType: 'basic' | 'withImage';
@@ -17,6 +18,13 @@ export const StyledContainer = styled.div<IStyledContainer>`
       ? theme.colors.defaultFontColor
       : theme.colors.secondaryFontColor};
   background-color: ${({ backgroundColor }) => backgroundColor};
+
+  opacity: 0;
+  transition: ${({ theme }) => theme.transition({ property: CSSProp.opacity })};
+
+  &.fontloaded {
+    opacity: 1;
+  }
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.mobile}) {
     width: ${({ theme }) => theme.breakPoints.mobile};

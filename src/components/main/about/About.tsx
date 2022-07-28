@@ -19,6 +19,7 @@ import mobile_1x_webp from 'assets/images/people/people-mobile.webp';
 import mobile_2x_webp from 'assets/images/people/people-mobile@2x.webp';
 import mobile_1x from 'assets/images/people/people-mobile.jpg';
 import mobile_2x from 'assets/images/people/people-mobile@2x.jpg';
+import { NavId } from 'data/navigation';
 
 const config: IImageSetConfig = {
   alt: 'people in office',
@@ -38,10 +39,11 @@ const config: IImageSetConfig = {
   },
 };
 
-const Advantages = () => {
+const About = () => {
   const theme = useContext(ThemeContext);
   return (
     <Section
+      id={NavId.ABOUT}
       backgroundColor={theme.colors.mainBrandColor}
       sectionType={'withImage'}
       Image={<ImagesSet config={config} />}
@@ -52,14 +54,9 @@ const Advantages = () => {
               aliquid impedit harum illum dolore explicabo ab dolores itaque
               rerum temporibus doloribus iste maiores deleniti?"
     >
-      <Button
-        text={'Read More'}
-        onClick={() => {}}
-        transparent
-        type={'button'}
-      />
+      <Button text={'Read More'} transparent type={'button'} />
     </Section>
   );
 };
 
-export default Advantages;
+export default About;

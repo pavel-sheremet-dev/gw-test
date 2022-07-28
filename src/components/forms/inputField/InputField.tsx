@@ -15,8 +15,6 @@ type InputFieldType = InputHTMLAttributes<HTMLInputElement> &
 const InputField = ({ label, required, ...props }: InputFieldType) => {
   const [field, meta] = useField(props);
 
-  console.log(required);
-
   return (
     <>
       <LabelStyled>

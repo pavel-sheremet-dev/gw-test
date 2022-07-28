@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { CSSProp } from './types';
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -6,6 +7,13 @@ export const GlobalStyle = createGlobalStyle`
   from { opacity: 0; }
   to   { opacity: 1; }
 }
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+
 
 body {
   color: ${({ theme }) => theme.colors.defaultFontColor};
@@ -77,5 +85,17 @@ a {
     clip-path: inset(100%);
     clip: rect(0 0 0 0);
     overflow: hidden;
+}
+
+.modal-wrapper {
+  & button[title] {
+    transition: ${({ theme }) =>
+      theme.transition({ property: CSSProp.opacity })};
+  }
+  
+  & button[title='First image'], & button[title='Last image']  {
+    opacity: 0;
+    pointer-events: none;
+  };
 }
 `;

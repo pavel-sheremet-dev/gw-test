@@ -18,10 +18,16 @@ export const NavStyled = styled.nav`
     text-align: center;
     position: relative;
     padding: 0px 6px;
+    cursor: pointer;
 
     &:focus::after,
     &:hover::after,
     &:active::after {
+      opacity: 1;
+    }
+
+    &.active-link::after,
+    &.focused {
       opacity: 1;
     }
   }

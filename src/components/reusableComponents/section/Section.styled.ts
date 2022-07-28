@@ -35,7 +35,6 @@ export const StyledSection = styled.section<IStyledSectionProps>`
 export const ImageWrapper = styled.div`
   width: 100%;
   flex-shrink: 0;
-  background-color: brown;
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     width: 368px;
@@ -47,6 +46,8 @@ export const ImageWrapper = styled.div`
 
   & img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 `;
 

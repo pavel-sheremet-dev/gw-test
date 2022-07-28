@@ -1,4 +1,5 @@
 import Container from 'components/reusableComponents/container/Container';
+import { Element } from 'react-scroll';
 
 import {
   ContentWrapper,
@@ -10,6 +11,7 @@ import {
 } from './Section.styled';
 
 interface IProps {
+  id: string;
   as?: 'section' | 'article';
   sectionType?: 'basic' | 'withImage';
   title?: string;
@@ -26,6 +28,7 @@ interface IProps {
 }
 
 const Section = ({
+  id,
   as = 'section',
   sectionType = 'basic',
   supTitle,
@@ -46,25 +49,27 @@ const Section = ({
       className={sectionClass}
       sectionType={sectionType}
     >
-      <Container
-        sectionType={sectionType}
-        classNames={
-          containerClass ? [containerClass, imagePosition] : [imagePosition]
-        }
-        backgroundColor={backgroundColor}
-      >
-        {Image && sectionType === 'withImage' && (
-          <ImageWrapper>{Image}</ImageWrapper>
-        )}
-        <ContentWrapper sectionType={sectionType}>
-          {supTitle && <SupTitle className="suptitle">{supTitle}</SupTitle>}
-          {title && <Title className="title">{title}</Title>}
-          {description && (
-            <Description className="description">{description}</Description>
+      <Element name={id}>
+        <Container
+          sectionType={sectionType}
+          classNames={
+            containerClass ? [containerClass, imagePosition] : [imagePosition]
+          }
+          backgroundColor={backgroundColor}
+        >
+          {Image && sectionType === 'withImage' && (
+            <ImageWrapper>{Image}</ImageWrapper>
           )}
-          {children}
-        </ContentWrapper>
-      </Container>
+          <ContentWrapper sectionType={sectionType}>
+            {supTitle && <SupTitle className="suptitle">{supTitle}</SupTitle>}
+            {title && <Title className="title">{title}</Title>}
+            {description && (
+              <Description className="description">{description}</Description>
+            )}
+            {children}
+          </ContentWrapper>
+        </Container>
+      </Element>
     </StyledSection>
   );
 };
