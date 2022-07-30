@@ -1,5 +1,4 @@
-import { useContext, useEffect, useRef, useState } from 'react';
-import { PageFormatContext } from 'context/PageFormatContext';
+import { useEffect, useRef, useState } from 'react';
 
 import Container from 'components/reusableComponents/container/Container';
 import Logo from 'components/logo/Logo';
@@ -9,16 +8,11 @@ import { HeaderStyled } from './Header.styled';
 
 import { navItems } from 'data/navigation';
 
-export type PositionType = 'absolute' | 'fixed'
+export type PositionType = 'absolute' | 'fixed';
 
 const Header = () => {
   const [position, setPosition] = useState<PositionType>('absolute');
   const [offset, setOffset] = useState(0);
-
-  const pageFormat = useContext(PageFormatContext);
-
-  const isMobile = pageFormat === 'mobile' || pageFormat === 'response';
-  const changePositionTrigger = isMobile ? 120 : 70;
 
   const isFixedPositioin = useRef<null | boolean>(null);
   const headerRef = useRef<HTMLHeadingElement>(null);
@@ -30,13 +24,13 @@ const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       if (isFixedPositioin.current) {
-        if (window.scrollY < changePositionTrigger) {
+        if (window.scrollY < offset) {
           setPosition('absolute');
           isFixedPositioin.current = false;
           return;
         }
       } else {
-        if (window.scrollY > changePositionTrigger) {
+        if (window.scrollY > offset) {
           setPosition('fixed');
           isFixedPositioin.current = true;
           return;
@@ -48,15 +42,10 @@ const Header = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [changePositionTrigger, position]);
+  }, [offset, position]);
 
   return (
-    <HeaderStyled
-      ref={headerRef}
-      position={position}
-      offset={changePositionTrigger}
-    >
-      <div></div>
+    <HeaderStyled ref={headerRef} position={position} offset={offset}>
       <Container classNames={['header-container']}>
         <Logo className="logo" />
         <Navigation items={navItems} offset={offset} />

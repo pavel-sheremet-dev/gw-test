@@ -16,7 +16,6 @@ export const ButtonStyled = styled.button<StyledProps>`
   font-size: 16px;
   line-height: 1.6;
   color: ${({ theme }) => theme.colors.secondaryFontColor};
-  opacity: 1;
   border: ${({ theme, transparent }) =>
     transparent ? `1px solid ${theme.colors.secondaryFontColor}` : 'none'};
   border-radius: 5px;
@@ -31,8 +30,8 @@ export const ButtonStyled = styled.button<StyledProps>`
     ${({ theme }) => theme.transition({ property: CSSProp.backgroundColor })},
     ${({ theme }) => theme.transition({ property: CSSProp.color })};
 
-  &:hover,
-  &:focus {
+  &[type]:hover,
+  &[type]:focus {
     opacity: ${({ transparent }) => (transparent ? 1 : 0.9)};
     background-color: ${({ transparent, theme, color }) =>
       transparent

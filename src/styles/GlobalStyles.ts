@@ -8,15 +8,14 @@ export const GlobalStyle = createGlobalStyle`
   to   { opacity: 1; }
 }
 
-
 body {
   color: ${({ theme }) => theme.colors.defaultFontColor};
   background-color: ${({ theme }) => theme.colors.backgroundColor1};
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 16px;
-  animation-name: fadein;
-  animation-duration: 0.5s;
+  /* animation-name: fadein;
+  animation-duration: 0.25s; */
 }
 
 
@@ -34,7 +33,7 @@ ol,
 li {
   margin-top: 0;
   margin-bottom: 0;
-  font-size: 12pt;
+  font-size: 16px;
 }
 
 ul {
@@ -88,4 +87,5 @@ a {
     pointer-events: none;
   };
 }
+
 `;
