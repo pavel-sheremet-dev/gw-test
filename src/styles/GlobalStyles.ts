@@ -3,10 +3,7 @@ import { CSSProp } from './types';
 
 export const GlobalStyle = createGlobalStyle`
 
-@keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
+
 
 body {
   color: ${({ theme }) => theme.colors.defaultFontColor};
@@ -14,8 +11,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 16px;
-  /* animation-name: fadein;
-  animation-duration: 0.25s; */
+  overflow-x: hidden;
 }
 
 
@@ -86,6 +82,23 @@ a {
     opacity: 0;
     pointer-events: none;
   };
+  
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+button,
+span,
+svg,
+ul,
+ol,
+li {
+  transition: ${({ theme }) => theme.transition({ property: CSSProp.opacity })};
+  opacity: 0;
+}
 `;

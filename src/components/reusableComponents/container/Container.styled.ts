@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { CSSProp } from 'styles/types';
 
 interface IStyledContainer {
   sectionType: 'basic' | 'withImage';
@@ -19,10 +18,19 @@ export const StyledContainer = styled.div<IStyledContainer>`
       : theme.colors.secondaryFontColor};
   background-color: ${({ backgroundColor }) => backgroundColor};
 
-  opacity: 0;
-  transition: ${({ theme }) => theme.transition({ property: CSSProp.opacity })};
-
-  &.fontloaded {
+  &.fontloaded h1,
+  &.fontloaded h2,
+  &.fontloaded h3,
+  &.fontloaded h4,
+  &.fontloaded h5,
+  &.fontloaded h6,
+  &.fontloaded p,
+  &.fontloaded button,
+  &.fontloaded span,
+  &.fontloaded svg,
+  &.fontloaded ul,
+  &.fontloaded ol,
+  &.fontloaded li {
     opacity: 1;
   }
 
